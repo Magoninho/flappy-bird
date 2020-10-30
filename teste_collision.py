@@ -2,7 +2,7 @@ import pygame
 
 # CONSTANTS
 ## display settings
-WIDTH, HEIGHT = 300, 300
+WIDTH, HEIGHT = 400, 400
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 ## COLORS
@@ -23,8 +23,11 @@ dont remember to:
 - create the rects
 """
 class Player:
-    def __init__(self):
-        pass
+    def __init__(self, screen, x, y, vel):
+        self.screen = screen
+        self.x = x
+        self.y = y
+        self.vel = vel
 
 
 while True:

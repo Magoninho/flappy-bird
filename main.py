@@ -17,14 +17,14 @@ text = font.render("Press up arrow to start", False, consts.BLACK)
 ## instanciar objetos
 player = Bird(screen, started)
 
-canos = []
-x = consts.WIDTH - 100
-for i in range(2):
+canos = [] ## canos agrupados
+
+x = consts.WIDTH + consts.DISTANCIA_INICIAL_DO_CANO
+for i in range(consts.PIPE_NUMBER):
     cano = Cano(screen, x)
-    x += consts.WIDTH/2 + 40
     canos.append(cano)
-    canos[i].x += i 
-    print(canos[i].y)
+    x +=  consts.WIDTH/consts.PIPE_NUMBER + 40
+
 
 ## game loop
 while True:
@@ -48,7 +48,7 @@ while True:
     if not player.started:
         screen.blit(text, (consts.WIDTH / 6, consts.HEIGHT / 1.5))
 
-    for x in range(2):
+    for x in range(consts.PIPE_NUMBER):
         teste = canos[x].draw(player.started, player)
 
     

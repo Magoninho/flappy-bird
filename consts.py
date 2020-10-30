@@ -7,3 +7,8 @@ CYAN = (66, 218, 245)
 
 ## display settings
 WIDTH, HEIGHT = 450, 600
+
+## stuff
+
+PIPE_NUMBER = 2
+DISTANCIA_INICIAL_DO_CANO = 200

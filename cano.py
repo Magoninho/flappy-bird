@@ -18,8 +18,4 @@ class Cano:
             self.x = consts.WIDTH
             self.y = random.randint(-300, 0)
 
-
-
-
-
-            
+           

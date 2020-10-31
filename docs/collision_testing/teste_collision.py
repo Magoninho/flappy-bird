@@ -103,8 +103,7 @@ for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação
     y = random.randint(0, HEIGHT)  # posição aleatoria y
     # definindo um novo rect para cada interação do loop
     obstacle_rect = pygame.Rect(x, y, 40, 40)
-    # adicionando o rect na lista de obstaculos
-    obstacles.append(obstacle_rect)
+    obstacles.append(obstacle_rect) # adicionando o rect na lista de obstaculos
 
 # game loop
 while True:

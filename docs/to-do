@@ -6,6 +6,7 @@
 [] apply the collisions
 [] reset the pipes when die
 [] score
+[] ajust the z index
 [] sprites (opcional)
 [] sound effects (opcional)
 [] comment the code

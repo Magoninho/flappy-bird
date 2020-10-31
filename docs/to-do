@@ -2,13 +2,13 @@
 = to-do list =
 --------------
 
-[] testar as colisões em um novo projeto temporario
-[] aplicar a colisão
-[] resetar o cano quando morrer
-[] pontuação
+[] test collisions in another file
+[] apply the collisions
+[] reset the pipes when die
+[] score
 [] sprites (opcional)
-[] efeitos sonoros (opcional)
-[] comentar o código
+[] sound effects (opcional)
+[] comment the code
 
 
 ==   Ideias   ==

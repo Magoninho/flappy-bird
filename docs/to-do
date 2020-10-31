@@ -2,7 +2,8 @@
 = to-do list =
 --------------
 
-[] test collisions in another file
+[x] test collisions in another file
+[x] comment this another file
 [] apply the collisions
 [] reset the pipes when die
 [] score

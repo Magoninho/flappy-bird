@@ -1,0 +1,9 @@
+O teste 2 deu merda.
+
+era melhor ter declarado as classes que precisam de variáveis locais dentro do proprio arquivo onde essa variavel foi declarada
+caso eu não precisasse de variaveis locais eu colocaria no arquivo local
+
+acho que essa é a logica do python :P
+
+conclusão:
+O teste 1 foi o que deu mais certo

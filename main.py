@@ -1,46 +1,47 @@
-import pygame, sys
+import pygame
+import sys
 from bird import *
 from consts import *
 from cano import *
 
 
-## display settings
+# display settings
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-## condition to play+
+# condition to play+
 started = False
 pygame.font.init()
 font = pygame.font.SysFont("Arial", 32)
 text = font.render("Press up arrow to start", False, consts.BLACK)
 
 
-## instanciar objetos
+# instanciar objetos
 player = Bird(screen, started)
 
-canos = [] ## canos agrupados
+canos = []  # canos agrupados
 
 x = consts.WIDTH + consts.DISTANCIA_INICIAL_DO_CANO
 for i in range(consts.PIPE_NUMBER):
     cano = Cano(screen, x)
     canos.append(cano)
-    x +=  consts.WIDTH/consts.PIPE_NUMBER + 40
+    x += consts.WIDTH/consts.PIPE_NUMBER + 40
+    print(canos)
 
 
-## game loop
+# game loop
 while True:
     clock = pygame.time.Clock()
     clock.tick(60)
 
     for event in pygame.event.get():
-        ## clicar no x
+        # clicar no x
         if event.type == pygame.QUIT:
             pygame.quit()
 
-        ## apertar esc
+        # apertar esc
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
-            
 
     screen.fill(CYAN)
     # player.draw_dino()
@@ -51,6 +52,5 @@ while True:
     for x in range(consts.PIPE_NUMBER):
         teste = canos[x].draw(player.started, player)
 
-    
-    ## display update
+    # display update
     pygame.display.update()

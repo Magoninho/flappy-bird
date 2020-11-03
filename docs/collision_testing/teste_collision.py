@@ -83,9 +83,8 @@ class Player:
 
 
 class Obstacle:
-    def __init__(self, screen, size, rect):
+    def __init__(self, screen, rect):
         self.screen = screen
-        self.size = size
         self.rect = rect  # eu peço o Rect
 
     def draw_obstacle(self):
@@ -123,6 +122,6 @@ while True:
 
     for o in range(len(obstacles)):  # desenhando os rects
         # desenhando o rect com o Rect listado no array de obstaculos
-        Obstacle(SCREEN, 40, obstacles[o]).draw_obstacle()
+        Obstacle(SCREEN, obstacles[o]).draw_obstacle()
 
     pygame.display.update()

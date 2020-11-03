@@ -4,15 +4,21 @@
 
 [x] test collisions in another file
 [x] comment this another file
-[] apply the collisions
-[] reset the pipes when die
+
+THE CODE FAILED
+
+NEW to-do list
+[x] remake the entire project
+    [x] make the collisions correctly
+    [] make the pipes become 2 pairs
+    [x] backup
+    [] ...
 [] score
 [] ajust the z index
+[] comment the code
 [] sprites (opcional)
 [] sound effects (opcional)
-[] comment the code
 
 
 ==   Ideias   ==
-
-- 
+- nothing lol

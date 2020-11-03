@@ -2,7 +2,7 @@ import pygame
 import random
 
 # CONSTANTS
-WIDTH, HEIGHT = 400, 600
+WIDTH, HEIGHT = 600, 600
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # colors
@@ -13,7 +13,11 @@ YELLOW = (245, 239, 66)
 CYAN = (66, 218, 245)
 
 # stuff #
-PIPE_NUMBER = 1
+PIPE_NUMBER = 2
+
+pygame.mixer.init()
+pygame.mixer.music.load('flappy-bird/segunda-tentatva/song2.ogg')
+pygame.mixer.music.play(-1)
 
 ## CLASSES ##
 
@@ -24,7 +28,6 @@ class Bird:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
         self.velocity = 0
         self.gravity = 1
 
@@ -33,6 +36,7 @@ class Bird:
         pygame.draw.rect(SCREEN, YELLOW, self.rect)
 
     def update(self):  # make the bird fall, controllers etc
+
         self.draw_bird()
         self.y += self.velocity
         self.velocity += self.gravity  # aceleração
@@ -43,15 +47,19 @@ class Bird:
         if keys[pygame.K_UP]:
             self.velocity = -10
 
-        if self.rect.colliderect(obstacle.get_rect(0)) or self.rect.colliderect(obstacle.get_rect(1)):
-            print("colidiu")
+        for i in range(len(canos)):  # colisões em todas os canos da lista
+            if self.rect.colliderect(canos[i].get_rect(0)) or self.rect.colliderect(canos[i].get_rect(1)):
 
+                self.velocity = 0  # pare o passarinho
+                for j in range(PIPE_NUMBER):  # para parar TODOS os canos
+                    canos[j].pipe_vel = 0
 
 # obstacle
 
+
 class Obstacle:
-    def __init__(self):
-        self.x = WIDTH
+    def __init__(self, x):
+        self.x = x
         self.y = random.randint(-300, 0)
 
         self.space_between = 570
@@ -59,7 +67,7 @@ class Obstacle:
         self.rect_bottom = pygame.Rect(
             self.x, self.y + self.space_between, 80, 400)
 
-        self.pipe_vel = 3
+        self.pipe_vel = 9
 
     def draw(self):
 
@@ -85,7 +93,7 @@ class Obstacle:
 
 
 # object instances
-obstacle = Obstacle()
+# obstacle = Obstacle()
 
 bird_x = WIDTH/4
 bird_y = HEIGHT/2 - 20
@@ -94,10 +102,12 @@ bird = Bird(bird_x, bird_y)
 
 canos = []
 
+x = WIDTH
 for i in range(PIPE_NUMBER):
-    cano = Obstacle()
-    canos.append(cano)
-    print(canos)
+    x += WIDTH/PIPE_NUMBER + 40
+    obstacle = Obstacle(x)
+    canos.append(obstacle)
+
 
 # GAME LOOP
 
@@ -115,7 +125,7 @@ while True:
     # drawinings
     bird.draw_bird()
     bird.update()
-
-    obstacle.draw()
+    for cano in range(PIPE_NUMBER):
+        canos[cano].draw()
 
     pygame.display.update()

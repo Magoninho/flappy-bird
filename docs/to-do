@@ -10,7 +10,7 @@ THE CODE FAILED
 NEW to-do list
 [x] remake the entire project
     [x] make the collisions correctly
-    [] make the pipes become 2 pairs
+    [x] make the pipes become 2 pairs
     [x] backup
     [] ...
 [] score

@@ -97,7 +97,7 @@ canos = []
 x = WIDTH
 for i in range(PIPE_NUMBER):
     x += WIDTH/PIPE_NUMBER + 40
-    obstacle = Obstacle(x)4
+    obstacle = Obstacle(x)
     canos.append(obstacle)
 
 # GAME LOOP

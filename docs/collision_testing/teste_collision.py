@@ -19,8 +19,7 @@ GREEN = (0, 255, 0)
 
 
 OBSTACLE_NUMBER = 10    # número de obstáculos
-                        # mude caso necessário
-
+# mude caso necessário
 
 
 # Classes
@@ -62,8 +61,8 @@ class Player:
         Aplicação do teorema de pitágoras para fazer a velocidade da diagonal ser a mesma
         """
         if self.vx != 0 and self.vy != 0:
-            self.vx /= 1.414 # raiz de 2
-            self.vy /= 1.414 # raiz de 2
+            self.vx /= 1.414  # raiz de 2
+            self.vy /= 1.414  # raiz de 2
 
     def draw_player(self):
         self.player_rect = pygame.Rect(self.x, self.y, self.size, self.size)
@@ -81,14 +80,17 @@ class Player:
                 self.changable_color = (255, 0, 0)
 
 # classe do obstáculo (não fiz uma herança com o player pq tive dificuldades)
+
+
 class Obstacle:
     def __init__(self, screen, size, rect):
         self.screen = screen
         self.size = size
-        self.rect = rect # eu peço o Rect
+        self.rect = rect  # eu peço o Rect
 
-    def draw_obstacle(self): 
-        pygame.draw.rect(self.screen, WHITE, self.rect) # desenha o obstáculo a partir dos Rects do array obstacles
+    def draw_obstacle(self):
+        # desenha o obstáculo a partir dos Rects do array obstacles
+        pygame.draw.rect(self.screen, WHITE, self.rect)
 
 
 # object instances
@@ -103,7 +105,8 @@ for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação
     y = random.randint(0, HEIGHT)  # posição aleatoria y
     # definindo um novo rect para cada interação do loop
     obstacle_rect = pygame.Rect(x, y, 40, 40)
-    obstacles.append(obstacle_rect) # adicionando o rect na lista de obstaculos
+    # adicionando o rect na lista de obstaculos
+    obstacles.append(obstacle_rect)
 
 # game loop
 while True:
@@ -119,6 +122,7 @@ while True:
     player.draw_player()  # desenhando o player
 
     for o in range(len(obstacles)):  # desenhando os rects
-        Obstacle(SCREEN, 40, obstacles[o]).draw_obstacle() # desenhando o rect com o Rect listado no array de obstaculos
+        # desenhando o rect com o Rect listado no array de obstaculos
+        Obstacle(SCREEN, 40, obstacles[o]).draw_obstacle()
 
     pygame.display.update()

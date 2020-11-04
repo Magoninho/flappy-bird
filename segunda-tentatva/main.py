@@ -2,11 +2,11 @@ import pygame
 import os
 import random
 
-pygame.mixer.init()
-pygame.mixer.music.load('song.ogg')
-pygame.mixer.music.play(-1)
+# pygame.mixer.init()
+# pygame.mixer.music.load('song.ogg')
+# pygame.mixer.music.play(-1)
 
-scores = []
+scores = [0]
 
 
 def main():
@@ -21,12 +21,33 @@ def main():
     GREEN = (0, 255, 0)
     YELLOW = (245, 239, 66)
     CYAN = (66, 218, 245)
+    DARK_PINK = (252, 3, 90)
 
     # stuff #
     PIPE_NUMBER = 2
+
     ## CLASSES ##
 
+    class Score:
+        def __init__(self):
+            self.x = 10
+            self.y = 10
+
+        def draw(self):
+            text = str(bird.score)
+            pygame.font.init()
+            font = pygame.font.SysFont('', 72)
+            text = font.render(text, False, DARK_PINK)
+            SCREEN.blit(text, (WIDTH/2-10, self.y))
+
+        def draw_last_score(self):
+            text = f"BEST: {bird.high_score[-1]}"
+            pygame.font.init()
+            font = pygame.font.SysFont('', 32)
+            texto = font.render(text, False, DARK_PINK)
+            SCREEN.blit(texto, (self.x, self.y))
     # THE BIRD
+
     class Bird:
         def __init__(self):
             self.x = WIDTH/4
@@ -34,6 +55,7 @@ def main():
             self.velocity = 0
             self.gravity = 1
             self.score = 0
+            self.high_score = sorted(scores)
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)
@@ -49,14 +71,14 @@ def main():
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
                 self.velocity = -10
+
             if self.y < 0 or self.y > HEIGHT:
                 scores.append(bird.score)
                 main()  # reseta do jogo chamado a função main
+
             for i in range(len(canos)):  # colisões em todas os canos da lista
                 if self.rect.colliderect(canos[i].rect_top) or self.rect.colliderect(canos[i].rect_bottom):
                     scores.append(bird.score)
-                    limpa_cosole()
-                    print(f"Last score: {scores[-1]}")
                     main()  # reseta do jogo chamado a função main
 
     # obstacle
@@ -84,8 +106,6 @@ def main():
                 self.rect_top.y = random.randint(-300, 0)
                 self.rect_bottom.y = self.rect_top.y + 570
                 bird.score += 1
-                limpa_cosole()
-                print(f"Score: {bird.score}")
 
     # function
     # Limpador de tela multiplataforma Magoninho Gamer versão 1.2
@@ -94,8 +114,8 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
     # limpa_cosole()
     # object instances
-
     bird = Bird()
+    obj_score = Score()
 
     canos = []
 
@@ -108,7 +128,8 @@ def main():
     # GAME LOOP
     while True:
         clock = pygame.time.Clock()
-        clock.tick(60)
+        clock.tick(70)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -119,12 +140,19 @@ def main():
         SCREEN.fill(CYAN)
         # drawinings
         bird.draw_bird()
-
         bird.update()
         for cano in range(PIPE_NUMBER):
             canos[cano].draw()
+        obj_score.draw()
+        obj_score.draw_last_score()
 
         pygame.display.update()
 
 
 main()
+
+
+"""
+Feito com carinho
+pelo Magoninho :D
+"""

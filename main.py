@@ -48,9 +48,11 @@ while True:
     player.update(started)
     if not player.started:
         screen.blit(text, (consts.WIDTH / 6, consts.HEIGHT / 1.5))
-
     for x in range(consts.PIPE_NUMBER):
-        teste = canos[x].draw(player.started, player)
-
+        if player.started:
+            teste = canos[x].draw(player.started, player)
+            print("started")
+        else:
+            canos[x].x = consts.WIDTH
     # display update
     pygame.display.update()

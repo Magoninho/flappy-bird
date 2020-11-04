@@ -41,7 +41,6 @@ class Bird:
 
         if self.y > consts.HEIGHT - 40 or self.y < 0:
             self.y = consts.HEIGHT / 2 - 40
-            self.yspeed = 0
             self.started = False
         ###########
         #colisions#

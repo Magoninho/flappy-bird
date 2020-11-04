@@ -37,7 +37,7 @@ def main():
             self.score = 0
 
         def draw_bird(self):
-            self.rect = bird_rect = pygame.Rect(self.x, self.y, 40, 40)
+            self.rect = pygame.Rect(self.x, self.y, 40, 40)
             pygame.draw.rect(SCREEN, YELLOW, self.rect)
 
         def update(self):  # make the bird fall, controllers etc
@@ -54,7 +54,7 @@ def main():
             if self.y < 0 or self.y > HEIGHT:
                 main()
             for i in range(len(canos)):  # colisões em todas os canos da lista
-                if self.rect.colliderect(canos[i].get_rect(0)) or self.rect.colliderect(canos[i].get_rect(1)):
+                if self.rect.colliderect(canos[i].rect_top) or self.rect.colliderect(canos[i].rect_bottom):
                     main()
 
     # obstacle
@@ -72,9 +72,6 @@ def main():
             self.pipe_vel = 9
 
         def draw(self):
-            self.rect_top = self.get_rect(0)
-            self.rect_bottom = self.get_rect(1)
-
             self.rect_top.x -= self.pipe_vel
             self.rect_bottom.x -= self.pipe_vel
             pygame.draw.rect(SCREEN, GREEN, self.rect_top)
@@ -88,12 +85,6 @@ def main():
                 limpa_tela()
                 bird.score += 1
                 print(f"Score: {bird.score}")
-
-        def get_rect(self, i):  # uma linda função que vai me retornar os rects para eu poder usá-los na collisão e tbm mexer neles
-            if i == 0:
-                return self.rect_top
-            else:
-                return self.rect_bottom
 
     # function
     # Limpador de tela multiplataforma Magoninho Gamer versão 1.2

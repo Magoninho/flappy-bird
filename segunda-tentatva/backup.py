@@ -1,5 +1,14 @@
 import pygame
+import os
 import random
+
+pygame.mixer.init()
+pygame.mixer.music.load('song.ogg')
+pygame.mixer.music.play(-1)
+
+
+high_score = bird.score
+print(high_score)
 
 
 def main():
@@ -17,25 +26,19 @@ def main():
 
     # stuff #
     PIPE_NUMBER = 2
-
-    pygame.mixer.init()
-    pygame.mixer.music.load('song2.ogg')
-    pygame.mixer.music.play(-1)
-
     ## CLASSES ##
 
     # THE BIRD
-
     class Bird:
-        def __init__(self, x, y):
-            self.x = x
-            self.y = y
+        def __init__(self):
+            self.x = WIDTH/4
+            self.y = HEIGHT/2 - 20
             self.velocity = 0
             self.gravity = 1
-            self.alive = True
+            self.score = 0
 
         def draw_bird(self):
-            self.rect = bird_rect = pygame.Rect(self.x, self.y, 40, 40)
+            self.rect = pygame.Rect(self.x, self.y, 40, 40)
             pygame.draw.rect(SCREEN, YELLOW, self.rect)
 
         def update(self):  # make the bird fall, controllers etc
@@ -44,20 +47,15 @@ def main():
             self.y += self.velocity
             self.velocity += self.gravity  # aceleração
 
-            # controllers #
-
+            # controles #
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
                 self.velocity = -10
-
+            if self.y < 0 or self.y > HEIGHT:
+                main()  # reseta do jogo chamado a função main
             for i in range(len(canos)):  # colisões em todas os canos da lista
-                if self.rect.colliderect(canos[i].get_rect(0)) or self.rect.colliderect(canos[i].get_rect(1)):
-                    main()
-                    # self.velocity = 0  # pare o passarinho
-                    # self.gravity = 0
-                    # for j in range(PIPE_NUMBER):  # para parar TODOS os canos
-                    #     canos[j].pipe_vel = 0
-                    #     self.y = HEIGHT / 2 - 20
+                if self.rect.colliderect(canos[i].rect_top) or self.rect.colliderect(canos[i].rect_bottom):
+                    main()  # reseta do jogo chamado a função main
 
     # obstacle
 
@@ -74,10 +72,6 @@ def main():
             self.pipe_vel = 9
 
         def draw(self):
-
-            self.rect_top = self.get_rect(0)
-            self.rect_bottom = self.get_rect(1)
-
             self.rect_top.x -= self.pipe_vel
             self.rect_bottom.x -= self.pipe_vel
             pygame.draw.rect(SCREEN, GREEN, self.rect_top)
@@ -88,20 +82,18 @@ def main():
                 self.rect_bottom.x = WIDTH
                 self.rect_top.y = random.randint(-300, 0)
                 self.rect_bottom.y = self.rect_top.y + 570
+                limpa_tela()
+                bird.score += 1
+                print(f"Score: {bird.score}")
 
-        def get_rect(self, i):  # uma linda função que vai me retornar os rects para eu poder usá-los na collisão e tbm mexer neles
-            if i == 0:
-                return self.rect_top
-            else:
-                return self.rect_bottom
-
+    # function
+    # Limpador de tela multiplataforma Magoninho Gamer versão 1.2
+    def limpa_tela():
+        os.system('cls' if os.name == 'nt' else 'clear')
+    limpa_tela()
     # object instances
-    # obstacle = Obstacle()
 
-    bird_x = WIDTH/4
-    bird_y = HEIGHT/2 - 20
-
-    bird = Bird(bird_x, bird_y)
+    bird = Bird()
 
     canos = []
 
@@ -110,7 +102,7 @@ def main():
         x += WIDTH/PIPE_NUMBER + 40
         obstacle = Obstacle(x)
         canos.append(obstacle)
-
+        print(canos)
     # GAME LOOP
     while True:
         clock = pygame.time.Clock()
@@ -125,8 +117,8 @@ def main():
         SCREEN.fill(CYAN)
         # drawinings
         bird.draw_bird()
-        if bird.alive:
-            bird.update()
+
+        bird.update()
         for cano in range(PIPE_NUMBER):
             canos[cano].draw()
 

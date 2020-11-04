@@ -3,8 +3,10 @@ import os
 import random
 
 pygame.mixer.init()
-pygame.mixer.music.load('song2.ogg')
+pygame.mixer.music.load('song.ogg')
 pygame.mixer.music.play(-1)
+
+scores = []
 
 
 def main():
@@ -22,18 +24,15 @@ def main():
 
     # stuff #
     PIPE_NUMBER = 2
-    score = 0
     ## CLASSES ##
 
     # THE BIRD
-
     class Bird:
-        def __init__(self, x, y):
-            self.x = x
-            self.y = y
+        def __init__(self):
+            self.x = WIDTH/4
+            self.y = HEIGHT/2 - 20
             self.velocity = 0
             self.gravity = 1
-            self.alive = True
             self.score = 0
 
         def draw_bird(self):
@@ -46,16 +45,19 @@ def main():
             self.y += self.velocity
             self.velocity += self.gravity  # aceleração
 
-            # controllers #
-
+            # controles #
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
                 self.velocity = -10
             if self.y < 0 or self.y > HEIGHT:
-                main()
+                scores.append(bird.score)
+                main()  # reseta do jogo chamado a função main
             for i in range(len(canos)):  # colisões em todas os canos da lista
                 if self.rect.colliderect(canos[i].rect_top) or self.rect.colliderect(canos[i].rect_bottom):
-                    main()
+                    scores.append(bird.score)
+                    limpa_cosole()
+                    print(f"Last score: {scores[-1]}")
+                    main()  # reseta do jogo chamado a função main
 
     # obstacle
 
@@ -76,28 +78,24 @@ def main():
             self.rect_bottom.x -= self.pipe_vel
             pygame.draw.rect(SCREEN, GREEN, self.rect_top)
             pygame.draw.rect(SCREEN, GREEN, self.rect_bottom)
-
             if self.rect_top.x < -80:
                 self.rect_top.x = WIDTH
                 self.rect_bottom.x = WIDTH
                 self.rect_top.y = random.randint(-300, 0)
                 self.rect_bottom.y = self.rect_top.y + 570
-                limpa_tela()
                 bird.score += 1
+                limpa_cosole()
                 print(f"Score: {bird.score}")
 
     # function
     # Limpador de tela multiplataforma Magoninho Gamer versão 1.2
-    def limpa_tela():
+
+    def limpa_cosole():
         os.system('cls' if os.name == 'nt' else 'clear')
-    limpa_tela()
+    # limpa_cosole()
     # object instances
-    # obstacle = Obstacle()
 
-    bird_x = WIDTH/4
-    bird_y = HEIGHT/2 - 20
-
-    bird = Bird(bird_x, bird_y)
+    bird = Bird()
 
     canos = []
 
@@ -121,8 +119,8 @@ def main():
         SCREEN.fill(CYAN)
         # drawinings
         bird.draw_bird()
-        if bird.alive:
-            bird.update()
+
+        bird.update()
         for cano in range(PIPE_NUMBER):
             canos[cano].draw()
 

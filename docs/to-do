@@ -12,7 +12,9 @@ NEW to-do list
     [x] make the collisions correctly
     [x] make the pipes become 2 pairs
     [x] backup
-    [] death from 0 or height
+    [x] death from 0 or height
+    [x] code optmization
+    [] ...
 [x] death and respawn (it wasnt soooo hard :P)
 [] score
 [] ajust the z index

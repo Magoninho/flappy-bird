@@ -15,12 +15,6 @@ def main():
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-    # colors
-    # BLACK = (0, 0, 0)
-    # GREEN = (0, 255, 0)
-    # YELLOW = (245, 239, 66)
-    # CYAN = (151, 223, 228)
-
     # paleta de cores
 
     cor = random.randint(0, 4)
@@ -142,12 +136,11 @@ def main():
                 self.rect_bottom.y = self.rect_top.y + 570
                 bird.score += 1
 
-    # function
+    # functions
     # Limpador de tela multiplataforma Magoninho Gamer versão 1.2
-
     def limpa_cosole():
         os.system('cls' if os.name == 'nt' else 'clear')
-    # limpa_cosole()
+
     # object instances
     bird = Bird()
     obj_score = Score()

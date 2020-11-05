@@ -14,10 +14,10 @@ def main():
     # CONSTANTS
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+    title = pygame.display.set_caption("PyFlappy by Magoninho")
 
     # paleta de cores
 
-    cor = random.randint(0, 4)
     """
         background color first
         pipe color second
@@ -31,9 +31,9 @@ def main():
             (255, 255, 255),  # WHITE
         ],
         [
-            (0, 0, 0),   # COOL_BLUE
-            (255, 255, 255),  # CYAN
-            (255, 0, 0),  # WHITE
+            (0, 0, 0),        # BLACK
+            (255, 255, 255),  # WHITE
+            (255, 0, 0),      # RED
         ],
         [
             (34, 37, 159),   # DARK_BLUE
@@ -48,9 +48,32 @@ def main():
         [
             (245, 233, 103),  # YELLOW
             (160, 143, 213),  # LIGHT PURPLE
-            (255, 255, 255)  # WHITE
+            (255, 255, 255)   # WHITE
+        ],
+        [
+            (132, 234, 192),
+            (226, 25, 36),
+            (255, 255, 255)
+        ],
+        [
+            (132, 234, 192),
+            (226, 25, 36),
+            (255, 255, 255)
+        ],
+        [
+            (202, 177, 255),
+            (77, 92, 133),
+            (71, 133, 212)
+        ],
+        [
+            (250, 243, 128),
+            (235, 202, 86),
+            (202, 131, 49)
         ]
     ]
+
+    # pegando a cor
+    cor = random.randint(0, len(cores) - 1)
 
     # stuff #
     PIPE_NUMBER = 2

@@ -15,13 +15,13 @@ def main():
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     title = pygame.display.set_caption("PyFlappy by Magoninho")
-
+    TARGET_FPS = 100
     # paleta de cores
 
     """
-        background color first
-        pipe color second
-        bird color third
+    background color first
+    pipe color second
+    bird color third
     """
     cores = [
 
@@ -108,6 +108,7 @@ def main():
             self.gravity = 1
             self.score = 0
             self.high_score = sorted(scores)
+            self.jump_force = -22
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)
@@ -116,13 +117,14 @@ def main():
         def update(self):  # make the bird fall, controllers etc
 
             self.draw_bird()
-            self.y += self.velocity
-            self.velocity += self.gravity  # aceleração
+            self.velocity += self.gravity * dt  # aceleração
+            # formula do sorvetão kkkkkk
+            self.y += self.velocity * dt + (self.gravity * .5) * (dt * dt) # eu concerteza nao copiei e colei da net
 
             # controles #
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
-                self.velocity = -10
+                self.velocity = self.jump_force * dt
 
             if self.y < 0 or self.y > HEIGHT:
                 scores.append(bird.score)
@@ -148,8 +150,8 @@ def main():
             self.pipe_vel = 9
 
         def draw(self):
-            self.rect_top.x -= self.pipe_vel
-            self.rect_bottom.x -= self.pipe_vel
+            self.rect_top.x -= self.pipe_vel * dt
+            self.rect_bottom.x -= self.pipe_vel * dt
             pygame.draw.rect(SCREEN, cores[cor][1], self.rect_top)
             pygame.draw.rect(SCREEN, cores[cor][1], self.rect_bottom)
             if self.rect_top.x < -80:
@@ -179,7 +181,7 @@ def main():
     # GAME LOOP
     while True:
         clock = pygame.time.Clock()
-        clock.tick(70)
+        dt = clock.tick(240) * .001 * TARGET_FPS
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -206,4 +208,10 @@ main()
 """
 Feito com carinho
 pelo Magoninho :D
+"""
+"""
+depois vou criar um projeto separado para estudar
+- O deltaTime
+- E físicas para jogos de plataforma
+
 """

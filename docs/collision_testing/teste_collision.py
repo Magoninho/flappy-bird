@@ -100,7 +100,7 @@ obstacles = []  # o array que vai receber os rects que serão usados para desenh
 
 # criando os obstaculos
 for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação do loop
-    x = random.randint(0, WIDTH)  # posição aleatoria x
+    x = random.randint(0, WIDTH)  # posição aleatoria 
     y = random.randint(0, HEIGHT)  # posição aleatoria y
     # definindo um novo rect para cada interação do loop
     obstacle_rect = pygame.Rect(x, y, 40, 40)

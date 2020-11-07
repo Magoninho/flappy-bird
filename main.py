@@ -1,6 +1,7 @@
 import pygame
 import os
 import random
+from colors import *
 
 pygame.mixer.init(44000, -16, 1, 1024)
 pygame.mixer.music.load('song.ogg')
@@ -17,60 +18,6 @@ def main():
     title = pygame.display.set_caption("PyFlappy by Magoninho")
     TARGET_FPS = 80
     # paleta de cores
-
-    """
-    background color first
-    pipe color second
-    bird color third
-    """
-    cores = [
-
-        [
-            (76, 111, 255),   # COOL_BLUE
-            (151, 223, 228),  # CYAN
-            (255, 255, 255),  # WHITE
-        ],
-        [
-            (0, 0, 0),        # BLACK
-            (255, 255, 255),  # WHITE
-            (255, 0, 0),      # RED
-        ],
-        [
-            (34, 37, 159),   # DARK_BLUE
-            (85, 165, 255),  # BLUE
-            (162, 234, 0)    # LIGHT GREEN
-        ],
-        [
-            (250, 92, 101),  # LIGHT RED
-            (55, 220, 148),  # LIMA
-            (255, 255, 255)  # WHITE
-        ],
-        [
-            (245, 233, 103),  # YELLOW
-            (160, 143, 213),  # LIGHT PURPLE
-            (255, 255, 255)   # WHITE
-        ],
-        [
-            (132, 234, 192),
-            (226, 25, 36),
-            (255, 255, 255)
-        ],
-        [
-            (132, 234, 192),
-            (226, 25, 36),
-            (255, 255, 255)
-        ],
-        [
-            (202, 177, 255),
-            (77, 92, 133),
-            (71, 133, 212)
-        ],
-        [
-            (250, 243, 128),
-            (235, 202, 86),
-            (202, 131, 49)
-        ]
-    ]
 
     # pegando a cor
     cor = random.randint(0, len(cores) - 1)

@@ -11,12 +11,11 @@ scores = [0]
 
 
 def main():
-
     # CONSTANTS
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     title = pygame.display.set_caption("PyFlappy by Magoninho")
-    TARGET_FPS = 90
+    TARGET_FPS = 80
     # paleta de cores
 
     # pegando a cor
@@ -55,7 +54,7 @@ def main():
             self.gravity = 1
             self.score = 0
             self.high_score = sorted(scores)
-            self.jump_force = -24
+            self.jump_force = -32
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)
@@ -71,7 +70,7 @@ def main():
 
             # controles #
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_UP] or keys[pygame.K_SPACE]:
+            if keys[pygame.K_UP]:
                 self.velocity = self.jump_force * dt
 
             if self.y < 0 or self.y > HEIGHT:
@@ -151,15 +150,3 @@ def main():
 
 
 main()
-
-
-"""
-Feito com carinho
-pelo Magoninho :D
-"""
-"""
-depois vou criar um projeto separado para estudar
-- O deltaTime
-- E físicas para jogos de plataforma
-
-"""

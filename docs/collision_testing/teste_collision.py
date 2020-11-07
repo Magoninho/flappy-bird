@@ -8,8 +8,12 @@ import random
 
 # CONSTANTS
 # display settings
+
+pygame.init()
+info_resolution = pygame.display.Info()
 WIDTH, HEIGHT = 400, 400
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+
 
 # COLORS
 WHITE = (255, 255, 255)
@@ -100,7 +104,7 @@ obstacles = []  # o array que vai receber os rects que serão usados para desenh
 
 # criando os obstaculos
 for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação do loop
-    x = random.randint(0, WIDTH)  # posição aleatoria 
+    x = random.randint(0, WIDTH)  # posição aleatoria
     y = random.randint(0, HEIGHT)  # posição aleatoria y
     # definindo um novo rect para cada interação do loop
     obstacle_rect = pygame.Rect(x, y, 40, 40)
@@ -111,7 +115,7 @@ for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação
 while True:
     clock = pygame.time.Clock()
     dt = clock.tick(60) / 1000.0
-    print(dt)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()

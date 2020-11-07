@@ -32,7 +32,7 @@ class Player:
         self.vx = 0
         self.vy = 0
         self.size = size
-        self.vel = 0.2
+        self.vel = 300
         self.changable_color = (255, 255, 0)
         self.player_rect = pygame.Rect(self.x, self.y, self.size, self.size)
 
@@ -50,13 +50,13 @@ class Player:
         Eu também fiz um sistema de física realista revolution ultimate pra mover o personagens com vetores e força
         """
         if keys[pygame.K_UP]:  # UP
-            self.vy = -self.vel
+            self.vy = -self.vel * dt  # multiplicando a velocidade pelo deltaTime
         if keys[pygame.K_DOWN]:  # DOWN
-            self.vy = self.vel
+            self.vy = self.vel * dt
         if keys[pygame.K_LEFT]:  # LEFT
-            self.vx = -self.vel
+            self.vx = -self.vel * dt
         if keys[pygame.K_RIGHT]:  # RIGHT
-            self.vx = self.vel
+            self.vx = self.vel * dt
         """
         Aplicação do teorema de pitágoras para fazer a velocidade da diagonal ser a mesma
         """
@@ -109,6 +109,9 @@ for i in range(OBSTACLE_NUMBER):  # cria um rect diferente para cada interação
 
 # game loop
 while True:
+    clock = pygame.time.Clock()
+    dt = clock.tick(60) / 1000.0
+    print(dt)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()

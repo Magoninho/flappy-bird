@@ -20,7 +20,7 @@ def main():
 
     """
     background color first
-    pipe color second
+    pipe color second 
     bird color third
     """
     cores = [
@@ -123,7 +123,7 @@ def main():
 
             # controles #
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_UP]:
+            if keys[pygame.K_UP] or keys[pygame.K_SPACE]:
                 self.velocity = self.jump_force * dt
 
             if self.y < 0 or self.y > HEIGHT:

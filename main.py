@@ -15,7 +15,7 @@ def main():
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     title = pygame.display.set_caption("PyFlappy by Magoninho")
-    TARGET_FPS = 100
+    TARGET_FPS = 80
     # paleta de cores
 
     """
@@ -108,7 +108,7 @@ def main():
             self.gravity = 1
             self.score = 0
             self.high_score = sorted(scores)
-            self.jump_force = -22
+            self.jump_force = -30
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)
@@ -119,7 +119,8 @@ def main():
             self.draw_bird()
             self.velocity += self.gravity * dt  # aceleração
             # formula do sorvetão kkkkkk
-            self.y += self.velocity * dt + (self.gravity * .5) * (dt * dt) # eu concerteza nao copiei e colei da net
+            # eu concerteza nao copiei e colei da net
+            self.y += self.velocity * dt + (self.gravity * .5) * (dt * dt)
 
             # controles #
             keys = pygame.key.get_pressed()

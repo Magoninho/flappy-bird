@@ -16,7 +16,7 @@ def main():
     WIDTH, HEIGHT = 600, 600
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     title = pygame.display.set_caption("PyFlappy by Magoninho")
-    TARGET_FPS = 80
+    TARGET_FPS = 90
     # paleta de cores
 
     # pegando a cor
@@ -55,7 +55,7 @@ def main():
             self.gravity = 1
             self.score = 0
             self.high_score = sorted(scores)
-            self.jump_force = -30
+            self.jump_force = -24
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)
@@ -71,7 +71,7 @@ def main():
 
             # controles #
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_UP]:
+            if keys[pygame.K_UP] or keys[pygame.K_SPACE]:
                 self.velocity = self.jump_force * dt
 
             if self.y < 0 or self.y > HEIGHT:

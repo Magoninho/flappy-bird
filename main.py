@@ -54,7 +54,7 @@ def main():
             self.gravity = 1
             self.score = 0
             self.high_score = sorted(scores)
-            self.jump_force = -30
+            self.jump_force = -31
 
         def draw_bird(self):
             self.rect = pygame.Rect(self.x, self.y, 40, 40)

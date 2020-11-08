@@ -150,3 +150,8 @@ def main():
 
 
 main()
+
+"""
+Feito com carinho
+pelo Magoninho :D
+"""

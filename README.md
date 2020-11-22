@@ -1,2 +1,2 @@
 ﻿## Flappy Bird in Python
-![demo](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d4b523b-2a52-4596-8521-84fe2d182ebe/ezgif.com-video-to-gif.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20201104/us-west-2/s3/aws4_request&X-Amz-Date=20201104T175331Z&X-Amz-Expires=86400&X-Amz-Signature=1da50a182c4bd5c1f00b7fad89eec374b4d0fc791dbfd6decccdfc676b88d64e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22ezgif.com-video-to-gif.gif%22)
+![demo](https://media.giphy.com/media/ZV40eqq3E1AZmtdznZ/giphy.gif)

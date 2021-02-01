@@ -9,12 +9,12 @@ pygame.mixer.music.play(-1)
 
 scores = [0]
 
+# CONSTANTS
+WIDTH, HEIGHT = 600, 600
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+title = pygame.display.set_caption("PyFlappy by Magoninho")
 
 def main():
-    # CONSTANTS
-    WIDTH, HEIGHT = 600, 600
-    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
-    title = pygame.display.set_caption("PyFlappy by Magoninho")
     TARGET_FPS = 80
     # paleta de cores
 
